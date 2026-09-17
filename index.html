@@ -197,7 +197,7 @@
   .sobre-inner{display:grid;grid-template-columns:.85fr 1.15fr;gap:76px;align-items:start;}
   .sobre-visual{position:sticky;top:120px;}
   .sobre-visual .frame{border-radius:4px;overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-sm);}
-  .sobre-visual .frame img{width:100%;height:100%;object-fit:cover;}
+  .sobre-visual .frame img,.sobre-visual .frame video{width:100%;height:100%;object-fit:cover;}
   .sobre h2{font-size:clamp(1.9rem,3vw,2.5rem);max-width:520px;line-height:1.2;margin-bottom:36px;}
   .quote{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,2vw,1.6rem);color:var(--sage-deep);line-height:1.5;border-left:2px solid var(--gold);padding-left:28px;margin-bottom:40px;}
   .sobre-text p{color:var(--ink-soft);font-size:1rem;margin-bottom:20px;max-width:640px;}
@@ -308,7 +308,7 @@
         <span class="eyebrow">Sinais de alerta</span>
         <h2>Você sente algum desses sintomas?</h2>
       </div>
-      <p>Sintomas digestivos recorrentes não são normais — e merecem uma investigação cuidadosa.</p>
+      <p>Sintomas digestivos recorrentes não são normais e merecem uma investigação cuidadosa.</p>
     </div>
     <div class="sintomas-grid reveal r-2">
       <div class="sintoma-item">
@@ -420,7 +420,11 @@
 <section class="sobre" id="sobre">
   <div class="container sobre-inner">
     <div class="sobre-visual reveal">
-      <div class="frame"><img src="images/asthella-cadeira.jpg" alt="Dra. Asthella Bittencourt em seu consultório em Uberlândia"></div>
+      <div class="frame">
+        <video autoplay muted loop playsinline preload="auto" poster="images/asthella-cadeira.jpg" aria-label="Dra. Asthella Bittencourt">
+          <source src="images/asthella-sobre.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
     <div class="sobre-content reveal r-2">
       <span class="eyebrow">Sobre</span>
