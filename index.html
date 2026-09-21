@@ -42,7 +42,10 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/asthella-hero.webp" fetchpriority="high" type="image/webp">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Montserrat:wght@400;500;600;700&display=optional">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Montserrat:wght@400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Montserrat:wght@400;500;600;700&display=optional" rel="stylesheet"></noscript>
 <style>
   :root{
     --sage:#6F885F;
@@ -383,7 +386,12 @@
       </div>
     </div>
     <div class="hero-visual reveal r-2 is-visible">
-      <div class="frame"><img src="images/asthella-hero.jpg" alt="Dra. Asthella Bittencourt, cirurgiã do aparelho digestivo em Uberlândia"></div>
+      <div class="frame">
+        <picture>
+          <source srcset="images/asthella-hero.webp" type="image/webp">
+          <img src="images/asthella-hero.jpg" alt="Dra. Asthella Bittencourt, cirurgiã do aparelho digestivo em Uberlândia" width="1197" height="1800" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
       <div class="badge">
         <div class="crm">Uberlândia · MG</div>
         <p class="badge-quote">"A qualidade de um procedimento começa na escuta atenta."</p>
@@ -514,7 +522,7 @@
   <div class="container sobre-inner">
     <div class="sobre-visual reveal">
       <div class="frame">
-        <video autoplay muted loop playsinline preload="auto" poster="images/asthella-cadeira.jpg" aria-label="Dra. Asthella Bittencourt">
+        <video id="sobre-video" muted loop playsinline preload="none" poster="images/asthella-cadeira.webp" width="1080" height="1920" aria-label="Dra. Asthella Bittencourt">
           <source src="images/asthella-sobre.mp4" type="video/mp4">
         </video>
       </div>
@@ -612,6 +620,17 @@
 
   var track = document.getElementById('conv-track');
   track.innerHTML += track.innerHTML;
+
+  var sobreVideo = document.getElementById('sobre-video');
+  if(sobreVideo){
+    var videoObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ sobreVideo.play().catch(function(){}); }
+        else{ sobreVideo.pause(); }
+      });
+    }, {threshold:.3});
+    videoObserver.observe(sobreVideo);
+  }
 
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
